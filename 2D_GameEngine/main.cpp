@@ -57,13 +57,22 @@ int main(int argc,char *argv[])
                 game->~Game();
                 system("cls");
                 if (whoWon == 1) {
-                    winFirstBot++;
+                    __asm {
+                        inc winFirstBot
+                    }
+                    //winFirstBot++;
                 }
                 else if (whoWon == 2) {
-                    winSecondBot++;
+                    __asm {
+                        inc winSecondBot
+                    }
+                    //winSecondBot++;
                 }
                 else if (whoWon == 0) {
-                    drawsCount++;
+                    __asm {
+                        inc drawsCount
+                    }
+                    //drawsCount++;
                 }
             }
             std::cout << "Hard bot 1 wins: " << winFirstBot <<

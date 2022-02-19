@@ -124,7 +124,11 @@ bool EasyBot::hardMove(int PosForCard, int OnTable, Table* table)
 				for (int y = i; y < countCardsB; y++) {
 					if (hand[i] == hand[y])
 					{
-						count2++;
+						__asm {
+							inc count2
+						}
+
+					//	count2++;
 						if (hand[y]->card.suit == trumpSuit) {
 							flag = true;
 						}
@@ -296,7 +300,10 @@ bool EasyBot::hardMove(int PosForCard, int OnTable, Table* table)
 				int countNotTrumps = 0;
 				for (int i = 0; i < countCardsB; i++) {\
 					if (hand[i]->card.suit != trumpSuit) {
-						countNotTrumps++;
+						__asm {
+							inc countNotTrumps
+						}
+						//countNotTrumps++;
 					}
 				}
 				if (countCardsB - countNotTrumps <= 1) {
@@ -493,7 +500,10 @@ bool EasyBot::hardCover(int PosCard, Card OpponentCard, Table* table)
 		if ((hand[i]->card.suit == OpponentCard.suit && hand[i]->card.value > OpponentCard.value)||
 			(hand[i]->card.suit == trumpSuit && OpponentCard.suit != trumpSuit)) {
 			rem[y] = i;
-			y++;
+			__asm {
+				inc y
+			}
+			//y++;
 		}
 	}
 	if (OpponentCard.suit == trumpSuit && cardsInDeck > 6) {
@@ -574,7 +584,10 @@ bool EasyBot::mediumCover(int PosCard, Card OpponentCard, Table* table)
 		if ((hand[i]->card.suit == OpponentCard.suit && hand[i]->card.value > OpponentCard.value) ||
 			(hand[i]->card.suit == trumpSuit && OpponentCard.suit != trumpSuit)) {
 			rem[y] = i;
-			y++;
+			__asm {
+				inc y
+			}
+			//y++;
 		}
 	}
 	if (OpponentCard.suit == trumpSuit && cardsInDeck > 6) {

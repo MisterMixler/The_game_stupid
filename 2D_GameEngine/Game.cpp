@@ -914,9 +914,17 @@ void Game::newRaund()
 			if (cardsInDeck == 0)
 				break;
 			hand[countCards] = new GameObject(deck->GiveCard(), cardPos + cardDisplace, 520, false);
-			cardDisplace += cardStep;
-			countCards++;
-			cardsInDeck--;
+			__asm {
+				mov eax, cardDisplace
+				mov ebx, cardStep
+				add eax, ebx
+				mov cardDisplace, eax
+				inc countCards
+				dec cardsInDeck
+			}
+		//	cardDisplace += cardStep;
+			//countCards++;
+			//cardsInDeck--;
 		}
 		cardDisplace = 0;
 	}
@@ -929,9 +937,17 @@ void Game::newRaund()
 			if (cardsInDeck == 0)
 				break;
 			hand[countCards] = new GameObject(deck->GiveCard(), cardPos + cardDisplace, 520, false);
-			cardDisplace += cardStep;
-			countCards++;
-			cardsInDeck--;
+			__asm {
+				mov eax, cardDisplace
+				mov ebx, cardStep
+				add eax, ebx
+				mov cardDisplace, eax
+				inc countCards
+				dec cardsInDeck
+			}
+			//cardDisplace += cardStep;
+			//countCards++;
+			//cardsInDeck--;
 		}
 		cardDisplace = cardStep * easyBot->upCount(0);
 		while (easyBot->upCount(0) < 6) {
